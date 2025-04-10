@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.pagena</groupId>
+    <artifactId>cloud-parent</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
+
+
+    <name>${project.artifactId}</name>
+    <description>
+        来吧！！！展示
+    </description>
+    <modules>
+<!--        <module>funny-common</module>-->
+        <module>funny-common</module>
+        <module>funny-server</module>
+<!--        <module>funny-server/funny-gateway</module>-->
+    </modules>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.boot.version>3.3.0</spring.boot.version>
+        <spring.cloud.version>2023.0.2</spring.cloud.version>
+        <spring.cloud.alibaba.version>2023.0.1.0</spring.cloud.alibaba.version>
+        <maven-source.version>3.2.1</maven-source.version>
+        <flatten-maven.version>1.4.1</flatten-maven.version>
+        <maven-compiler.version>3.8.1</maven-compiler.version>
+        <maven-resources.version>3.2.0</maven-resources.version>
+        <revision>1.0-SNAPSHOT</revision>
+        <spring-boot.version>3.3.0</spring-boot.version>
+        <jjwt.version>0.9.1</jjwt.version>
+        <hutool.version>5.8.25</hutool.version>
+        <log4j.version>2.17.0</log4j.version>
+        <knife4j.version>4.3.0</knife4j.version>
+        <openapi.swagger.version>2.2.0</openapi.swagger.version>
+        <commons-lang.version>2.6</commons-lang.version>
+        <fastjson.version>2.0.9</fastjson.version>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- 所有子模块可以自己决定是否用这些依赖 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring.cloud.alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+<!--    常见的构建插件-->
+<!--    maven-compiler-plugin：编译 Java 代码，指定 JDK 版本。-->
+
+<!--    spring-boot-maven-plugin：将 Spring Boot 应用打包为可执行 JAR 或 WAR。-->
+
+<!--    maven-surefire-plugin：用于单元测试，确保测试用例执行。-->
+
+<!--    maven-assembly-plugin：用于打包多个文件（比如打包整个项目的依赖库）。-->
+
+<!--    maven-javadoc-plugin：生成项目的 Javadoc 文档。-->
+
+<!--    maven-dependency-plugin：用来分析和清理项目的依赖。-->
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <!--			<plugin>-->
+            <!--				<groupId>com.diffplug.spotless</groupId>-->
+            <!--				<artifactId>spotless-maven-plugin</artifactId>-->
+            <!--				<version>${spotless-maven-plugin.version}</version>-->
+            <!--				<configuration>-->
+            <!--					<java>-->
+            <!--						<eclipse>-->
+            <!--							<file>${project.basedir}/spotless/spotless.xml</file>-->
+            <!--						</eclipse>-->
+            <!--						<licenseHeader>-->
+            <!--							<file>${project.basedir}/spotless/license-header</file>-->
+            <!--						</licenseHeader>-->
+            <!--					</java>-->
+            <!--				</configuration>-->
+            <!--				&lt;!&ndash;绑定maven生命周期，在compile时会执行apply &ndash;&gt;-->
+            <!--				<executions>-->
+            <!--					<execution>-->
+            <!--						<goals>-->
+            <!--							<goal>apply</goal>-->
+            <!--						</goals>-->
+            <!--						<phase>compile</phase>-->
+            <!--					</execution>-->
+            <!--				</executions>-->
+            <!--			</plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven-resources.version}</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source.version}</version>
+                <configuration>
+                    <!--install、deploy时会上传源码jar包到仓库，默认是true-->
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-source</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>${flatten-maven.version}</version>
+                <configuration>
+                    <updatePomFile>true</updatePomFile>
+                </configuration>
+                <executions>
+                    <!-- enable flattening -->
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <!-- ensure proper cleanup -->
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
