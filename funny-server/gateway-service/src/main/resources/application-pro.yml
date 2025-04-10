@@ -6,6 +6,15 @@ spring:
         locator:
           enabled: true
       routes:
+        - id: ${prefix.distinction.name:funny}-lucifa-service
+          uri: lb://${prefix.distinction.name:funny}-lucifa-service
+          predicates:
+            - Path=/funny/lucifa/**
+          filters:
+            - StripPrefix=2
+          metadata:
+            title: 基础数据服务
+
         - id: ${prefix.distinction.name:damai}-base-data-service
           uri: lb://${prefix.distinction.name:damai}-base-data-service
           predicates:
