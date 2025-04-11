@@ -1,12 +1,13 @@
 #服务端口
 server:
-  port: 7001
+  port: 7002
+
   http2:
     enabled: false
 # 应用名称
 spring:
   application:
-    name: ${prefix.distinction.name:funny}-lucifa-service
+    name: ${prefix.distinction.name:funny}-coco-service
 #  profiles:
 #    # 微服务调用
 #    active: dev
@@ -21,6 +22,13 @@ spring:
       port: 6379
       timeout: 3000
   cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connect-timeout: 30000  # 连接超时，单位毫秒
+            read-timeout: 30000
+
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848

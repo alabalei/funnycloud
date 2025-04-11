@@ -18,7 +18,8 @@
 <!--        <module>funny-common</module>-->
         <module>funny-common</module>
         <module>funny-server</module>
-<!--        <module>funny-server/funny-gateway</module>-->
+        <module>funny-client</module>
+        <!--        <module>funny-server/funny-gateway</module>-->
     </modules>
 
     <properties>

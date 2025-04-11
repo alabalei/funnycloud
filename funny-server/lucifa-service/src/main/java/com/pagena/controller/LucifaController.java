@@ -12,8 +12,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/lucifa")
 public class LucifaController {
 
-    @GetMapping
+    @GetMapping("/sayHello")
     public ApiResponse<String> hellow() {
-        return ApiResponse.ok("你好你好");
+        return ApiResponse.ok("我是路西法");
+    }
+
+
+    @GetMapping()
+    public ApiResponse<String> test() {
+        return ApiResponse.ok("滴滴滴滴滴滴滴滴");
     }
 }
